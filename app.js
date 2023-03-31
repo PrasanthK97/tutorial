@@ -60,26 +60,7 @@ app.post("/players/", async (request, response) => {
          ${role}
       );`;
 
-  const dbResponse = await db.run(addPlayerDetails);
-  const bookId = dbResponse.lastID;
-  response.send("Player Added to Team");
-});
-
-app.post("/players/", async (request, response) => {
-  const playerDetails = request.body;
-  const { player_name, jersey_number, role } = playerDetails;
-  const addBookQuery = `
-    INSERT INTO
-      cricket_team (player_name, jersey_number, role)
-    VALUES
-      (
-        '${player_name}',
-         ${jersey_number},
-         ${role},
-         
-      );`;
-
-  const dbResponse = await db.run(addBookQuery);
+  const dbResponse = db.run(addPlayerDetails);
   const bookId = dbResponse.lastID;
   response.send("Player Added to Team");
 });
